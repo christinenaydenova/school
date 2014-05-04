@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
@@ -168,7 +167,6 @@ public class MultiPlayerActivity extends Activity {
 					Socket socket = new Socket("192.168.0.101", 1234);
 
 					BufferedReader input = null;
-
 					DataOutputStream out = null;
 
 					try {
@@ -178,12 +176,9 @@ public class MultiPlayerActivity extends Activity {
 						input = new BufferedReader(new InputStreamReader(
 								socket.getInputStream())); 
 
-						Log.w("client recieved: ", input.readLine());
-						input.close();
+						Log.w("client recieved: ", input.readLine()); //if line == "11", button11 = active
 
 
-					out.flush();
-					out.close();
 
 					
 				} catch (UnknownHostException e) {
@@ -231,7 +226,7 @@ public class MultiPlayerActivity extends Activity {
 			builder1.setMessage("X печели");
 			builder1.setTitle("Резултат");
 			builder1.show();
-			setFinishOnTouchOutside(false);
+//			setFinishOnTouchOutside(false);
 		} else if (field.checkWin() == 2) {
 			builder1.setMessage("O печели");
 			builder1.setTitle("Резултат");
